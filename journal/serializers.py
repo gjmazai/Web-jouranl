@@ -1,3 +1,4 @@
+from dataclasses import field
 from rest_framework import serializers
 from .models import Student, Group, StudentInGroup, Subject, Lesson, Progress
 
@@ -35,4 +36,12 @@ class LessonSerializer(serializers.ModelSerializer):
 class ProgressSerializer(serializers.ModelSerializer):
     class Meta:
         model = Progress
+        fields = '__all__'
+
+
+class FiltersSerializer(serializers.Serializer):
+    module = SubjectSerializer(many=True)
+
+    class Meta:
+        model: Lesson
         fields = '__all__'

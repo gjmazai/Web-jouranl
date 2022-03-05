@@ -19,15 +19,18 @@ class Group(models.Model):
         verbose_name = "Группа"
         verbose_name_plural = "Группы"
 
-    def __int__(self):
-        return self.name
+    def __str__(self):
+        return f'{self.name}'
 
 
 class StudentInGroup(models.Model):
     input_Students = models.DateField(verbose_name="Студент вступил в группу")
-    output_Students = models.DateField(verbose_name="Студент покинул группу", blank=True, null=True)
-    students = models.ManyToManyField(Student, verbose_name="Студент")
-    groups = models.ManyToManyField(Group, verbose_name="Группа")
+    output_Students = models.DateField(
+        verbose_name="Студент покинул группу", blank=True, null=True)
+    students = models.ManyToManyField(
+        Student, verbose_name="Студент", related_name="Group")
+    groups = models.ManyToManyField(
+        Group, verbose_name="Группа", related_name="StudentInGroup")
 
     class Meta:
         verbose_name: "Студенты в группе"
@@ -68,7 +71,7 @@ class Progress(models.Model):
     students = models.ForeignKey(
         Student, on_delete=models.PROTECT, verbose_name="Студент", blank=True)
     lessons = models.ForeignKey(
-        Lesson ,on_delete=models.PROTECT, verbose_name="Занятия", blank=True)
+        Lesson, on_delete=models.PROTECT, verbose_name="Занятия", blank=True)
     attendance = models.CharField(
         max_length=3, default='Да', verbose_name='Присутсвие')
     grade = models.PositiveSmallIntegerField(

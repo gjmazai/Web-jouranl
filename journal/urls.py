@@ -2,12 +2,13 @@ from .api import StudentViewSet, StudentInGroupViewSet, GroupViewSet, SubjectVie
 from rest_framework import routers
 from django.urls import path
 
+
 router = routers.DefaultRouter()
-router.register('api/Student', StudentViewSet, 'Student')
-router.register('api/StudentInGroup', StudentInGroupViewSet, 'StudentInGroup')
-router.register('api/Group', GroupViewSet, 'Group')
-router.register('api/Subject', SubjectViewSet, 'Subject')
-router.register('api/Lesson', LessonViewSet, 'Lesson')
-router.register('api/Progress', ProgressViewSet, 'Progress')
+router.register('Student', StudentViewSet, 'Student')
+router.register('StudentInGroup', StudentInGroupViewSet, 'StudentInGroup')
+router.register('Group', GroupViewSet, 'Group')
+router.register('Subject', SubjectViewSet, 'Subject')
+router.register('Lesson', LessonViewSet, 'Lesson')
+router.register('Progress', ProgressViewSet, 'Progress')
 
 urlpatterns = router.urls

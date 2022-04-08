@@ -1,10 +1,10 @@
 import "./css/Navbar.css"
-import Subject from '../Subject';
+import SubjectContainer from "../Content/Subject/SubjectContainer"
 
-const Navbar = () => {
+const Navbar = (props) => {
     return (
         <div className='Navbar'>
-            <Subject />
+            <SubjectContainer />
         </div >
     );
 }

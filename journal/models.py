@@ -33,7 +33,7 @@ class StudentInGroup(models.Model):
         Group, verbose_name="Группа", related_name="StudentInGroup")
 
     class Meta:
-        verbose_name: "Студенты в группе"
+        verbose_name: 'Студент в группе'
         verbose_name_plural: "Студенты в группе"
 
     def __str__(self):
@@ -60,7 +60,7 @@ class Lesson(models.Model):
         Group, verbose_name="Группа на занятии", blank=True, on_delete=models.PROTECT)
 
     class Meta:
-        verbose_name: "Занятие которое проводилось"
+        verbose_name: 'Занятие которое проводилось'
         verbose_name_plural: "Занятия которые проводились"
 
     def __str__(self):

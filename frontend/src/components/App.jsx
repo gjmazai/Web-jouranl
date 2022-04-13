@@ -1,7 +1,6 @@
 import '../css/App.css';
 import Header from './Header/Header';
 import Navbar from './NavBar/Navbar';
-import Test from "./Test";
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import SubjectDetailContainer from './Content/SubjectDetail/SubjectDetailConteiner';
 

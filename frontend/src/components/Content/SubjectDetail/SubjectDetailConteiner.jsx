@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import SubDetail from "./SubDetail";
-import { setContentAC, deleteContentAC } from "../../../redux/subjectDetailReducer";
+import { setContentAC, deleteContentAC, newLessonAC, newLessonTextAC, newProgressTextGradeAC, newProgressTextAttendanceAC, newProgressAC, newProgressTextGradeAddAC } from "../../../redux/subjectDetailReducer";
 import React from 'react';
 import { useParams } from "react-router-dom";
 
@@ -68,7 +68,29 @@ let mapDispatchToProps = (dispatch) => {
         },
         deleteContent: () => {
             dispatch(deleteContentAC());
-        }
+        },
+
+        // Для занятий
+        newLesson: (date) => {
+            dispatch(newLessonAC(date));
+        },
+        newLessonText: (text) => {
+            dispatch(newLessonTextAC(text));
+        },
+
+        // Для прогресса
+        addNewProgress: (text) => {
+            dispatch(newProgressAC(text));
+        },
+        newProgressTextGradeAdd: (data) => {
+            dispatch(newProgressTextGradeAddAC(data));
+        },
+        newProgressTextGrade: (data) => {
+            dispatch(newProgressTextGradeAC(data));
+        },
+        newProgressTextAttendance: (data) => {
+            dispatch(newProgressTextAttendanceAC(data));
+        },
     }
 }
 

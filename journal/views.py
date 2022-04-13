@@ -28,7 +28,7 @@ def subject_detail(request, pk):
         # print("me", file=f)
 
     subjects = Subject.objects.get(pk=pk)
-    lessons = subjects.lesson_set.order_by('date')
+    lessons = subjects.lesson_set.order_by('id')
     view_progreses = []
     for lesson in lessons:
         for progress in lesson.progress_set.all():

@@ -7,8 +7,13 @@
 }
 
 .form {
-    margin-top: -1px;
-    padding-bottom: 15px;
+    margin-bottom: 10px;
+    /* padding-bottom: 15px; */
+}
+
+.label {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 table {
@@ -19,9 +24,38 @@ thead {
     background-color: rgb(224, 224, 224);
 }
 
+td {
+    width: 150px;
+}
+
 .warning {
     color: #eee;
     position: absolute;
     margin: -590px 0px 500px 500px;
     width: 300px;
+}
+
+
+
+.input {
+    margin-top: 3px;
+    padding: 5px;
+    border: 1px;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.15);
+    grid-column: 1;
+    /* margin-right: 20px; */
+}
+
+#input {
+    margin-top: -2px;
+    padding: 2px;
+}
+
+#check {
+    margin-top: 4px;
+}
+
+.check {
+    grid-column: 2;
+    margin-top: -4px;
 }

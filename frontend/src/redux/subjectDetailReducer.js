@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const SET_CONTENT = "SET_CONTENT";
 const DELETE_CONTENT = "DELETE_CONTENT";
 const NEW_LESSON = "NEW_LESSON";
@@ -11,8 +13,6 @@ const NEW_PROGRESS_TEXT_GRADE_ADD = 'NEW_PROGRESS_TEXT_GRADE_ADD';
 let lastElArray = (array) => {
     return array[array.length - 1];
 }
-
-
 
 let initialState = {
     progressData: [
@@ -37,6 +37,8 @@ let initialState = {
     newProgressData: {
 
     },
+
+    newLessonId: null,
 
     newLesssonText: '',
     newProgressTextGrade: [],
@@ -64,24 +66,27 @@ const subjectDetailReducer = (state = initialState, action) => {
         case NEW_LESSON:
             return {
                 ...state,
-                newLessonData: {
-                    id: lastElArray(state.lessonData).id + 1,
-                    date: state.newLesssonText,
-                    subjects: state.subjectData.id,
-                    groups: state.subjectData.groups
-                }
+                newLessonData: { ...action.data },
             }
         case NEW_PROGRESS:
+            debugger;
+            let DataNewProgress = {
+                attendance: action.data.attendace,
+                grade: action.data.grade,
+                students: action.data.students,
+                lessons: state.newLessonData.id,
+            };
+            axios({
+                method: 'POST',
+                url: '/api/Progress/',
+                data: DataNewProgress,
+            }).then(response => {
+                DataNewProgress = response.data;
+            });
             return {
                 ...state,
-                newProgressData:// [...state.newProgressData,
-                {
-                    id: lastElArray(state.progressData).id + 1,
-                    attendance: action.data.attendace,
-                    grade: action.data.grade,
-                    students: action.data.students,
-                    lessons: state.newLessonData.id
-                }
+                newProgressData: DataNewProgress// [...state.newProgressData,
+
             }
         case NEW_LESSON_TEXT:
             return {
@@ -151,6 +156,8 @@ export const newProgressTextAttendanceAC = (data) => ({
     type: NEW_PROGRESS_TEXT_ATTENDACE,
     data
 })
+
+// Геттеры для получения прогресса и занятия
 
 
 export default subjectDetailReducer;

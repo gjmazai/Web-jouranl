@@ -19,7 +19,7 @@ const NewProgressComponent = (props) => {
     }
 
     //отвечают за запрос
-    const addProgressStudentAfterHalfMinutes = () => {
+    const addProgressStudentAfterHalfMinutes = async () => {
         let grade = newProgressGradeInForm.current.value;
         let attendace = newProgressAttendanceInForm.current.value;
         let data = {
@@ -28,12 +28,6 @@ const NewProgressComponent = (props) => {
             students: props.student
         }
         props.addNewProgress(data);
-        debugger;
-        setTimeout(() => axios({
-            method: 'POST',
-            url: '/api/Progress/',
-            data: props.contentData.newProgressData,
-        }), 2000);
     }
 
 
@@ -47,7 +41,7 @@ const NewProgressComponent = (props) => {
                     <input type="text" placeholder="Посещаемость" className={style.input}
                         onChange={changeProgressAttendanceDate} ref={newProgressAttendanceInForm} value={props.contentData.newProgressTextAttendace} />
 
-                    <input type="checkbox" onClick={addProgressStudentAfterHalfMinutes} />
+                    <input type="checkbox" onClick={addProgressStudentAfterHalfMinutes} className={style.check} />
                 </label>
             </Form>
         </div>

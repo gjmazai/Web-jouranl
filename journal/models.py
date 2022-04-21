@@ -54,7 +54,7 @@ class Subject(models.Model):
 
 class Lesson(models.Model):
     date = models.CharField(
-        max_length=15, verbose_name="Дата занятия", blank=True, unique=True)
+        max_length=15, verbose_name="Дата занятия", blank=True)
     subjects = models.ForeignKey(
         Subject, verbose_name="Проведенные занятия", blank=True, on_delete=models.PROTECT)
     groups = models.ForeignKey(
@@ -72,7 +72,7 @@ class Progress(models.Model):
     students = models.ForeignKey(
         Student, on_delete=models.PROTECT, verbose_name="Студент", blank=True)
     lessons = models.ForeignKey(
-        Lesson, on_delete=models.PROTECT, verbose_name="Занятия", blank=True)
+        Lesson, on_delete=models.CASCADE, verbose_name="Занятия", blank=True)
     attendance = models.CharField(
         max_length=3, default='Да', verbose_name='Присутсвие')
     grade = models.PositiveSmallIntegerField(

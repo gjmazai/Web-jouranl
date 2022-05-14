@@ -40,9 +40,9 @@ const SubDetail = (props) => {
                     <Button onClick={newLessonButton}>Добавить новое занятие</Button>
                     : flag &&
                     <div>
-                        <Button onClick={oldLessonButton}>Отмена</Button>
+                        <Button onClick={oldLessonButton}>Сохранить</Button>
                         <span>
-                            <h1 className={style.warning}>Пожалуйста заполните сначала поле занятия</h1>
+                            <h1 className={style.warning}>Пожалуйста заполните сначала дату занятия, а только после успеваемость и посещаемость</h1>
                         </span>
                     </div>
 

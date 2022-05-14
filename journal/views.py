@@ -23,9 +23,12 @@ def subject_list(request):
 
 @api_view(['GET', 'POST'])
 def subject_detail(request, pk):
-    with open("log.txt", 'a') as f:
-        print(f"DEBUG: {request} {pk} \n", file=f)
-        # print("me", file=f)
+    # with open("log.txt", 'a') as f:
+    #     print(f"DEBUG: {request} {pk} \n", file=f)
+    # print("me", file=f)
+
+    # allData = {}
+    # lessons = lessons = subjects.lesson_set.order_by('id')
 
     subjects = Subject.objects.get(pk=pk)
     lessons = subjects.lesson_set.order_by('id')

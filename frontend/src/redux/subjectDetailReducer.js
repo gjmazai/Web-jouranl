@@ -38,6 +38,14 @@ let initialState = {
 
     },
 
+    // allData: {
+    //     subjectData: {
+    //         // { id: null, name: "", groups: null }
+    //     },
+    //     lessonData: [
+    //     ],
+    // },
+
     newLessonId: null,
 
     newLesssonText: '',
@@ -69,7 +77,7 @@ const subjectDetailReducer = (state = initialState, action) => {
                 newLessonData: { ...action.data },
             }
         case NEW_PROGRESS:
-            debugger;
+            // debugger;
             let DataNewProgress = {
                 attendance: action.data.attendace,
                 grade: action.data.grade,

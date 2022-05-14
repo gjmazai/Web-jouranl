@@ -77,7 +77,7 @@ const Table = (props) => {
                         <tr>
                             <td>{student.name}</td>
                             {props.contentData.progressData.map(progress => (
-                                progress.students === student.id ?
+                                (progress.students === student.id) ?
                                     <td><p>{progress.grade} / {progress.attendance}</p></td> :
                                     <></>
                             ))}

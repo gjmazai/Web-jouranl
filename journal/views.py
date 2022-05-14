@@ -1,3 +1,4 @@
+from re import X
 from urllib.request import Request
 from django.shortcuts import render
 from rest_framework.decorators import api_view
@@ -27,13 +28,10 @@ def subject_detail(request, pk):
     #     print(f"DEBUG: {request} {pk} \n", file=f)
     # print("me", file=f)
 
-    # allData = {}
-    # lessons = lessons = subjects.lesson_set.order_by('id')
-
     subjects = Subject.objects.get(pk=pk)
-    lessons = subjects.lesson_set.order_by('id')
+    lessonses = subjects.lesson_set.order_by('id')
     view_progreses = []
-    for lesson in lessons:
+    for lesson in lessonses:
         for progress in lesson.progress_set.all():
             view_progreses.append(progress)
 
@@ -51,16 +49,33 @@ def subject_detail(request, pk):
     if request.method == 'GET':
 
         subjects_serializer = SubjectSerializer(subjects)  # many=True
-        lessons_serializer = LessonSerializer(lessons, many=True)
+        lessons_serializer = LessonSerializer(lessonses, many=True)
         students_serializer = StudentSerializer(view_students, many=True)
         progreses_serializer = ProgressSerializer(view_progreses, many=True)
 
+        journalData = []
+        x = 0
+        for lesson in lessons_serializer.data:
+            journalData.append({'lesson_id': lesson['id'],
+                                'date': lesson['date'],
+                                'subjects': lesson['subjects'],
+                                'groups': lesson['groups'],
+                                'students': []})
+            x = x+1
+            for progress in progreses_serializer.data:
+                if progress['lessons'] == lesson['id']:
+                    journalData[x-1]['students'].append({
+                        'progress_id': progress['id'],
+                        'student': progress['students'],
+                        'lessons': progress['lessons'],
+                        'attendance': progress['attendance'],
+                        'grade': progress['grade']
+                    })
+
         response_results = {
             'subject': subjects_serializer.data,
-            'lesson': lessons_serializer.data,
-            'progress': progreses_serializer.data,
             'student': students_serializer.data,
-
+            'journalData': journalData,
         }
         return Response(response_results)
 
